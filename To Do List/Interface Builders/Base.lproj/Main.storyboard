@@ -31,7 +31,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Tasks" id="BVI-cv-K11">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="l7X-ua-vA4"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="l7X-ua-vA4">
+                            <connections>
+                                <action selector="addNewTask:" destination="asw-pZ-V7B" id="aGG-vb-fFo"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUb-st-UJS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

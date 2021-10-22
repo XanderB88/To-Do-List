@@ -9,7 +9,7 @@ import Foundation
 
 protocol TasksViewModelProtocol {
     
-    var tasks: [Task] { get }
+    var tasks: [Task] { get set }
     
     func numberOfRows() -> Int
     
