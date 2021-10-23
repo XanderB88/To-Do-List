@@ -15,7 +15,6 @@
 		116907002722329300F4B66D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116906FE2722329300F4B66D /* LaunchScreen.storyboard */; };
 		1169070B27223A2700F4B66D /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169070A27223A2700F4B66D /* TasksTableViewController.swift */; };
 		1169070E27223C9E00F4B66D /* TasksViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169070D27223C9E00F4B66D /* TasksViewModelProtocol.swift */; };
-		1169071227223D4500F4B66D /* TasksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169071127223D4500F4B66D /* TasksModel.swift */; };
 		1169071527223EF100F4B66D /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169071427223EF100F4B66D /* TasksViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +29,6 @@
 		116907012722329300F4B66D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1169070A27223A2700F4B66D /* TasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
 		1169070D27223C9E00F4B66D /* TasksViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModelProtocol.swift; sourceTree = "<group>"; };
-		1169071127223D4500F4B66D /* TasksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksModel.swift; sourceTree = "<group>"; };
 		1169071427223EF100F4B66D /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,7 +69,6 @@
 				1169070C27223BB100F4B66D /* Views */,
 				116907082722335700F4B66D /* Interface Builders */,
 				116907092722339A00F4B66D /* Supporting Files */,
-				116906F92722328F00F4B66D /* To_Do_List.xcdatamodeld */,
 			);
 			path = "To Do List";
 			sourceTree = "<group>";
@@ -122,7 +119,7 @@
 		1169071027223D1400F4B66D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1169071127223D4500F4B66D /* TasksModel.swift */,
+				116906F92722328F00F4B66D /* To_Do_List.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -209,7 +206,6 @@
 				116906F12722328F00F4B66D /* AppDelegate.swift in Sources */,
 				116906F32722328F00F4B66D /* SceneDelegate.swift in Sources */,
 				1169071527223EF100F4B66D /* TasksViewModel.swift in Sources */,
-				1169071227223D4500F4B66D /* TasksModel.swift in Sources */,
 				1169070E27223C9E00F4B66D /* TasksViewModelProtocol.swift in Sources */,
 				1169070B27223A2700F4B66D /* TasksTableViewController.swift in Sources */,
 				116906FB2722328F00F4B66D /* To_Do_List.xcdatamodeld in Sources */,

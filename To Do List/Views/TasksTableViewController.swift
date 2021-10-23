@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import CoreData
 
 class TasksTableViewController: UITableViewController {
     
     // MARK: - Propertise
     
     var viewModel: TasksViewModelProtocol?
-    var newTask: Task?
+    var container: NSPersistentContainer?
     
     // MARK: - Lifecycle
     
@@ -22,50 +23,19 @@ class TasksTableViewController: UITableViewController {
         viewModel  = TasksViewModel()
     }
     
-    // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return viewModel?.numberOfRows() ?? .zero
-    }
-    
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        guard let viewModel = viewModel else { return cell }
+        let context = getContext()
         
-        cell.textLabel?.text = viewModel.tasks[indexPath.row].title
+        let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
         
-        return cell
-    }
-    
-    // MARK: - Table view delegate
-    
-    //  Add an editing action for table rows
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-    
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            viewModel?.tasks.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+        do {
+            viewModel?.tasks = try context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print(error.localizedDescription)
         }
     }
-    
-    //    Add a moving ability for table rows
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
     
     // MARK: - IBActions
     
@@ -78,10 +48,7 @@ class TasksTableViewController: UITableViewController {
             let textField = alertController.textFields?.first
             
             guard let newTaskTitle = textField?.text else { return }
-            
-            self.newTask = Task(title: newTaskTitle)
-            
-            self.viewModel?.tasks.append(self.newTask!)
+            self.saveData(withTitle: newTaskTitle)
             self.tableView.reloadData()
         }
         
@@ -92,4 +59,77 @@ class TasksTableViewController: UITableViewController {
         
         present(alertController, animated: true)
     }
+    
+    fileprivate func getContext() -> NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
+    
+    func saveData(withTitle title: String) {
+        let context = getContext()
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: "Task", in: context) else { return }
+        
+        let taskObject = Task(entity: entity, insertInto: context)
+        taskObject.title = title
+        
+        do {
+            try context.save()
+            viewModel?.tasks.append(taskObject)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
 }
+
+// MARK: - Table view data source
+extension TasksTableViewController {
+   
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return viewModel?.numberOfRows() ?? .zero
+    }
+
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        guard let viewModel = viewModel else { return cell }
+        
+        let task = viewModel.tasks[indexPath.row]
+        cell.textLabel?.text = task.title
+        
+        return cell
+    }
+
+    // MARK: - Table view delegate
+
+    //  Add an editing action for table rows
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            viewModel?.tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+
+    //    Add a moving ability for table rows
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+}
+
+
+
+

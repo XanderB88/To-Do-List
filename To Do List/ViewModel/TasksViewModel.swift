@@ -9,12 +9,7 @@ import Foundation
 
 class TasksViewModel: TasksViewModelProtocol {
 
-    var tasks: [Task] = [
-        Task(title: "By something"),
-        Task(title: "Do something"),
-        Task(title: "Read something"),
-        Task(title: "Sleep"),
-    ]
+    var tasks: [Task] = []
     
     func numberOfRows() -> Int {
         return tasks.count
