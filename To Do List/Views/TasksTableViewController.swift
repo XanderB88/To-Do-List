@@ -13,7 +13,6 @@ class TasksTableViewController: UITableViewController {
     // MARK: - Propertise
     
     var viewModel: TasksViewModelProtocol?
-    var container: NSPersistentContainer?
     
     // MARK: - Lifecycle
     
@@ -60,12 +59,9 @@ class TasksTableViewController: UITableViewController {
         present(alertController, animated: true)
     }
     
-    fileprivate func getContext() -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }
+    // MARK: - Private methods
     
-    func saveData(withTitle title: String) {
+    private func saveData(withTitle title: String) {
         let context = getContext()
         
         guard let entity = NSEntityDescription.entity(forEntityName: "Task", in: context) else { return }
@@ -79,6 +75,11 @@ class TasksTableViewController: UITableViewController {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+    }
+    
+    fileprivate func getContext() -> NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
     }
 }
 
