@@ -119,6 +119,19 @@ extension TasksTableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            let context = getContext()
+            let fetchRequest :NSFetchRequest<Task> = Task.fetchRequest()
+            
+            if let tasks = try? context.fetch(fetchRequest) {
+                context.delete(tasks[indexPath.row])
+            }
+            
+            do {
+                try context.save()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
             viewModel?.tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
