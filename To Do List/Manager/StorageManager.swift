@@ -12,6 +12,10 @@ import UIKit
 
 class StorageManager: StorageManagerProtocol {
     
+    static let shared = StorageManager()
+    
+    private init(){}
+    
     func getContext() -> NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
@@ -37,7 +41,7 @@ class StorageManager: StorageManagerProtocol {
         let taskObject = Task(entity: entity, insertInto: context)
         
         completion(taskObject)
-       
+        
         do {
             try context.save()
         } catch let error as NSError {
@@ -61,5 +65,5 @@ class StorageManager: StorageManagerProtocol {
             print(error.localizedDescription)
         }
     }
-   
+    
 }

@@ -9,7 +9,6 @@ import Foundation
 
 class TasksViewModel: TasksViewModelProtocol {
     
-    var storageManager = StorageManager()
     var tasks: [Task] = []
     
     func numberOfRows() -> Int {
@@ -21,20 +20,20 @@ class TasksViewModel: TasksViewModelProtocol {
     }
     
     func getTasks() {
-        storageManager.getData { [weak self] tasks in
+        StorageManager.shared.getData { [weak self] tasks in
             self?.tasks = tasks
         }
     }
     
     func saveTask(withTitle title: String) {
-        storageManager.saveData { newTask in
+        StorageManager.shared.saveData { newTask in
             newTask.title = title
             tasks.append(newTask)
         }
     }
     
     func deleteTask(forIndexPath indexPath: IndexPath) {
-        storageManager.deleteData(indexPath)
+        StorageManager.shared.deleteData(indexPath)
         tasks.remove(at: indexPath.row)
     }
     
