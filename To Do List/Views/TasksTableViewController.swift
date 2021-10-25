@@ -39,7 +39,7 @@ class TasksTableViewController: UITableViewController {
             let textField = alertController.textFields?.first
             
             guard let newTaskTitle = textField?.text else { return }
-            self.saveData(withTitle: newTaskTitle)
+            self.viewModel?.saveTask(withTitle: newTaskTitle)
             self.tableView.reloadData()
         }
         
@@ -52,22 +52,6 @@ class TasksTableViewController: UITableViewController {
     }
     
     // MARK: - Private methods
-    
-    private func saveData(withTitle title: String) {
-        let context = getContext()
-        
-        guard let entity = NSEntityDescription.entity(forEntityName: "Task", in: context) else { return }
-        
-        let taskObject = Task(entity: entity, insertInto: context)
-        taskObject.title = title
-        
-        do {
-            try context.save()
-            viewModel?.tasks.append(taskObject)
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
-    }
     
     fileprivate func getContext() -> NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

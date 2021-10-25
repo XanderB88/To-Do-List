@@ -9,6 +9,7 @@ import Foundation
 
 class TasksViewModel: TasksViewModelProtocol {
     
+    
     var tasks: [Task] = []
     var storageManager = StorageManager()
     
@@ -19,6 +20,13 @@ class TasksViewModel: TasksViewModelProtocol {
     func getTasks() {
         storageManager.getData { [weak self] tasks in
             self?.tasks = tasks
+        }
+    }
+    
+    func saveTask(withTitle title: String) {
+        storageManager.saveData { newTask in
+            newTask.title = title
+            tasks.append(newTask)
         }
     }
     

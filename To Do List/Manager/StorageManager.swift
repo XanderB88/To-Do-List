@@ -27,7 +27,22 @@ class StorageManager {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+    }
+    
+    func saveData(completion: (Task) -> ()) {
+        let context = getContext()
         
+        guard let entity = NSEntityDescription.entity(forEntityName: "Task", in: context) else { return }
+        
+        let taskObject = Task(entity: entity, insertInto: context)
+        
+        completion(taskObject)
+       
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
     }
    
 }
