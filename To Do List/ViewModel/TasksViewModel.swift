@@ -8,11 +8,18 @@
 import Foundation
 
 class TasksViewModel: TasksViewModelProtocol {
-
+    
     var tasks: [Task] = []
+    var storageManager = StorageManager()
     
     func numberOfRows() -> Int {
         return tasks.count
+    }
+    
+    func getTasks() {
+        storageManager.getData { [weak self] tasks in
+            self?.tasks = tasks
+        }
     }
     
 }

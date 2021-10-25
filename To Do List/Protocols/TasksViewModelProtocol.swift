@@ -13,4 +13,6 @@ protocol TasksViewModelProtocol {
     
     func numberOfRows() -> Int
     
+    func getTasks() -> ()
+  
 }

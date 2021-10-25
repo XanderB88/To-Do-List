@@ -16,6 +16,7 @@
 		1169070B27223A2700F4B66D /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169070A27223A2700F4B66D /* TasksTableViewController.swift */; };
 		1169070E27223C9E00F4B66D /* TasksViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169070D27223C9E00F4B66D /* TasksViewModelProtocol.swift */; };
 		1169071527223EF100F4B66D /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169071427223EF100F4B66D /* TasksViewModel.swift */; };
+		116C79BA2726221200F6DD67 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C79B92726221200F6DD67 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		1169070A27223A2700F4B66D /* TasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
 		1169070D27223C9E00F4B66D /* TasksViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModelProtocol.swift; sourceTree = "<group>"; };
 		1169071427223EF100F4B66D /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
+		116C79B92726221200F6DD67 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		116906EF2722328F00F4B66D /* To Do List */ = {
 			isa = PBXGroup;
 			children = (
+				116C79B8272621EE00F6DD67 /* Manager */,
 				11690707272232A400F4B66D /* Application */,
 				1169071027223D1400F4B66D /* Model */,
 				1169071327223EC600F4B66D /* ViewModel */,
@@ -130,6 +133,14 @@
 				1169071427223EF100F4B66D /* TasksViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		116C79B8272621EE00F6DD67 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				116C79B92726221200F6DD67 /* StorageManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +217,7 @@
 				116906F12722328F00F4B66D /* AppDelegate.swift in Sources */,
 				116906F32722328F00F4B66D /* SceneDelegate.swift in Sources */,
 				1169071527223EF100F4B66D /* TasksViewModel.swift in Sources */,
+				116C79BA2726221200F6DD67 /* StorageManager.swift in Sources */,
 				1169070E27223C9E00F4B66D /* TasksViewModelProtocol.swift in Sources */,
 				1169070B27223A2700F4B66D /* TasksTableViewController.swift in Sources */,
 				116906FB2722328F00F4B66D /* To_Do_List.xcdatamodeld in Sources */,

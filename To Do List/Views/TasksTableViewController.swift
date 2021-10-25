@@ -25,15 +25,7 @@ class TasksTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let context = getContext()
-        
-        let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
-        
-        do {
-            viewModel?.tasks = try context.fetch(fetchRequest)
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
+        viewModel?.getTasks()
     }
     
     // MARK: - IBActions
@@ -118,20 +110,9 @@ extension TasksTableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            deleteData(indexPath)
+            
             // Delete the row from the data source
-            let context = getContext()
-            let fetchRequest :NSFetchRequest<Task> = Task.fetchRequest()
-            
-            if let tasks = try? context.fetch(fetchRequest) {
-                context.delete(tasks[indexPath.row])
-            }
-            
-            do {
-                try context.save()
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
-            
             viewModel?.tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -141,8 +122,27 @@ extension TasksTableViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
+    
+    
+    fileprivate func deleteData(_ indexPath: IndexPath) {
+        
+        let context = getContext()
+        
+        let fetchRequest :NSFetchRequest<Task> = Task.fetchRequest()
+        
+        if let tasks = try? context.fetch(fetchRequest) {
+            context.delete(tasks[indexPath.row])
+        }
+        
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
 }
+
 
 
 
