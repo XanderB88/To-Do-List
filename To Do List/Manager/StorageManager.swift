@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 
 
-class StorageManager {
+class StorageManager: StorageManagerProtocol {
     
     func getContext() -> NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

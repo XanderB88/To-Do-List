@@ -9,12 +9,15 @@ import Foundation
 
 class TasksViewModel: TasksViewModelProtocol {
     
-    
-    var tasks: [Task] = []
     var storageManager = StorageManager()
+    var tasks: [Task] = []
     
     func numberOfRows() -> Int {
         return tasks.count
+    }
+    
+    func titleForCell(forIndexPath indexPath: IndexPath) -> String {
+        return tasks[indexPath.row].title ?? "Do not have title"
     }
     
     func getTasks() {
@@ -34,5 +37,7 @@ class TasksViewModel: TasksViewModelProtocol {
         storageManager.deleteData(indexPath)
         tasks.remove(at: indexPath.row)
     }
+    
+    
     
 }

@@ -13,6 +13,8 @@ protocol TasksViewModelProtocol {
     
     func numberOfRows() -> Int
     
+    func titleForCell(forIndexPath indexPath: IndexPath) -> String
+    
     func getTasks() -> ()
     
     func saveTask(withTitle title: String) -> ()

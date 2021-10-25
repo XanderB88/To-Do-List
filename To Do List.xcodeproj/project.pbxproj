@@ -17,6 +17,7 @@
 		1169070E27223C9E00F4B66D /* TasksViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169070D27223C9E00F4B66D /* TasksViewModelProtocol.swift */; };
 		1169071527223EF100F4B66D /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169071427223EF100F4B66D /* TasksViewModel.swift */; };
 		116C79BA2726221200F6DD67 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C79B92726221200F6DD67 /* StorageManager.swift */; };
+		116C79BC27263EA300F6DD67 /* StorageManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C79BB27263EA300F6DD67 /* StorageManagerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		1169070D27223C9E00F4B66D /* TasksViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModelProtocol.swift; sourceTree = "<group>"; };
 		1169071427223EF100F4B66D /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
 		116C79B92726221200F6DD67 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		116C79BB27263EA300F6DD67 /* StorageManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				1169070D27223C9E00F4B66D /* TasksViewModelProtocol.swift */,
+				116C79BB27263EA300F6DD67 /* StorageManagerProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				116906F12722328F00F4B66D /* AppDelegate.swift in Sources */,
+				116C79BC27263EA300F6DD67 /* StorageManagerProtocol.swift in Sources */,
 				116906F32722328F00F4B66D /* SceneDelegate.swift in Sources */,
 				1169071527223EF100F4B66D /* TasksViewModel.swift in Sources */,
 				116C79BA2726221200F6DD67 /* StorageManager.swift in Sources */,

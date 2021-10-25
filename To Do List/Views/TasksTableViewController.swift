@@ -72,8 +72,7 @@ extension TasksTableViewController {
         
         guard let viewModel = viewModel else { return cell }
         
-        let task = viewModel.tasks[indexPath.row]
-        cell.textLabel?.text = task.title
+        cell.textLabel?.text = viewModel.titleForCell(forIndexPath: indexPath)
         
         return cell
     }
