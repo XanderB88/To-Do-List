@@ -44,5 +44,22 @@ class StorageManager {
             print(error.localizedDescription)
         }
     }
+    
+    func deleteData(_ indexPath: IndexPath) {
+        
+        let context = getContext()
+        
+        let fetchRequest :NSFetchRequest<Task> = Task.fetchRequest()
+        
+        if let tasks = try? context.fetch(fetchRequest) {
+            context.delete(tasks[indexPath.row])
+        }
+        
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
    
 }

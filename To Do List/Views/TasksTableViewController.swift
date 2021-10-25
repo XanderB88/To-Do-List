@@ -51,12 +51,6 @@ class TasksTableViewController: UITableViewController {
         present(alertController, animated: true)
     }
     
-    // MARK: - Private methods
-    
-    fileprivate func getContext() -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }
 }
 
 // MARK: - Table view data source
@@ -94,10 +88,9 @@ extension TasksTableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            deleteData(indexPath)
+            viewModel?.deleteTask(forIndexPath: indexPath)
             
             // Delete the row from the data source
-            viewModel?.tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -105,24 +98,6 @@ extension TasksTableViewController {
     //    Add a moving ability for table rows
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
-    }
-    
-    
-    fileprivate func deleteData(_ indexPath: IndexPath) {
-        
-        let context = getContext()
-        
-        let fetchRequest :NSFetchRequest<Task> = Task.fetchRequest()
-        
-        if let tasks = try? context.fetch(fetchRequest) {
-            context.delete(tasks[indexPath.row])
-        }
-        
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
     }
     
 }

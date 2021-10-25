@@ -30,4 +30,9 @@ class TasksViewModel: TasksViewModelProtocol {
         }
     }
     
+    func deleteTask(forIndexPath indexPath: IndexPath) {
+        storageManager.deleteData(indexPath)
+        tasks.remove(at: indexPath.row)
+    }
+    
 }

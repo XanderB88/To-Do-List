@@ -17,4 +17,6 @@ protocol TasksViewModelProtocol {
     
     func saveTask(withTitle title: String) -> ()
   
+    func deleteTask(forIndexPath indexPath: IndexPath) -> ()
+    
 }
